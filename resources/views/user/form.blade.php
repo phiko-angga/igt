@@ -57,7 +57,3 @@
     </div>
 </form>
 @endsection
-
-@section('script')
-    @include('user/form_js')
-@endsection
