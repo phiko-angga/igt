@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CommActivityAuth;
 use App\Models\Municipio;
 use App\Models\Posto;
 use App\Models\Suco;
 use App\Models\Aldeia;
-use App\Models\CommActivityAuth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Log;
@@ -156,6 +156,35 @@ class GetSelectController extends Controller
                 ];
             }
             $data['total_count'] = $aldeia->count();
+        }
+        return response()->json($data, 200);
+    }
+
+    public function getCommActAuth(Request $request){
+        $search     = $request->q;
+        $limit      = $request->page_limit;
+        $page       = $request->page;
+
+        $get = CommActivityAuth::select('*');
+
+        if($search != null){
+            $get = $get->where(function($query) use ($search){
+                $query->where('id_number','like','%'.$search.'%')->orWhere('description','like','%'.$search.'%');
+            });
+        }
+
+        $get = $get->skip($page)->take($limit)->get();
+        $data = ["total_count"   => 0];
+
+        if($get){
+            foreach($get as $p){
+                $data['items'][] = [
+                    'id' => $p->id,
+                    'text' => $p->id_number,
+                    'data'  => $p
+                ];
+            }
+            $data['total_count'] = $get->count();
         }
         return response()->json($data, 200);
     }

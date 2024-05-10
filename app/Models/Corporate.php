@@ -35,7 +35,7 @@ class Corporate extends Model
     }
 
     public function get_data($request){
-        $data = Self::with(['municipio','posto','suco','aldeia','commactivity_auth'])->select('suco.*');
+        $data = Self::with(['municipio','posto','suco','aldeia','commactivity_auth'])->select('corporate.*');
         $search = $request->get('search');
         if(isset($search)){
             $data = $data->where('company', 'like', '%'.$search.'%')
@@ -48,7 +48,7 @@ class Corporate extends Model
     }
 
     public function get_detail($id){
-        $data = Self::with(['municipio','posto','suco','aldeia','commactivity_auth'])->select('suco.*')
+        $data = Self::with(['municipio','posto','suco','aldeia','commactivity_auth'])->select('corporate.*')
         ->where('id',$id)->first();
         
         return $data; 

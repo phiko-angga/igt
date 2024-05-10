@@ -57,7 +57,9 @@
 		<script src="/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
 		<script src="/vendors/scripts/dashboard3.js"></script>
 		<script src="/scripts/custom.js"></script>
-
+		<script>
+			var baseUrl = "{{url('')}}";
+		</script>
     @yield('script')
 </body>
 

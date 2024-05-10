@@ -333,3 +333,23 @@ function initSelect2(){
       })
   }
 }
+
+$(document).on('change','#municipio_id, #posto_id, #suco_id',function(e){
+  let id = $(this).attr('id');
+  if(id == 'municipio_id'){
+      $("#posto_id").val("");
+      $("#suco_id").val("");
+      $("#aldeia_id").val("");
+      $("#posto_id").data("select2-url",baseUrl+'/get-select/posto?municipio_id='+$("#municipio_id").val());
+  }else
+  if(id == 'posto_id'){
+      $("#suco_id").val("");
+      $("#aldeia_id").val("");
+      $("#suco_id").data("select2-url",baseUrl+'/get-select/suco?posto_id='+$("#posto_id").val());
+  }else
+  if(id == 'suco_id'){
+      $("#aldeia_id").val("");
+      $("#aldeia_id").data("select2-url",baseUrl+'/get-select/aldeia?suco_id='+$("#suco_id").val());
+  }
+  initSelect2();
+})

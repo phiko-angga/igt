@@ -4,7 +4,7 @@
     <tr>
         <td>{{ $suco->firstItem() + $key}}</td>
         <td><strong>{{ $row->suco }}</strong></td>
-        <td>{{ $row->suco }}</td>
+        <td>{{ $row->posto }}</td>
         <td class="text-center">
             <div class="dropdown">
                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">

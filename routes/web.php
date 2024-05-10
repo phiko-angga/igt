@@ -50,7 +50,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/get-select/posto', [GetSelectController::class,'getPosto']);
     Route::get('/get-select/suco', [GetSelectController::class,'getSuco']);
     Route::get('/get-select/aldeia', [GetSelectController::class,'getAldeia']);
-    Route::get('/get-select/comm-activity-auth', [GetSelectController::class,'getCommActivityAuth']);
+    Route::get('/get-select/comm-activity-auth', [GetSelectController::class,'getCommActAuth']);
 
     Route::get('/logout', [AuthController::class,'logout']);
 });

@@ -5,21 +5,25 @@
         <td>{{ $corporate->firstItem() + $key}}</td>
         <td>
             <strong>{{ $row->company }}</strong><br>
-            <p class="mb-0">{{$row->number}}</p><br>
-            <p class="mb-0">{{$row->address}}</p>
+            <p class="mb-0">
+                {{$row->number}}<br>
+                {{$row->address}}
+            </p>
         </td>
         <td>
-            <p class="mb-0">{{$row->minicipio->minicipio}}</p><br>
-            <p class="mb-0">{{$row->posto->posto}}</p><br>
-            <p class="mb-0">{{$row->suco->suco}}</p><br>
-            <p class="mb-0">{{$row->aldeia->aldeia}}</p>
+            <p class="mb-0">
+                {{$row->municipio->municipio}},&nbsp;
+                {{$row->posto->posto}},&nbsp;
+                {{$row->suco->suco}},&nbsp;
+                {{$row->aldeia->aldeia}}</p>
         </td>
         <td>
-            <strong>{{ $row->commactivity_auth->id_number }}</strong><br>
-            <p class="mb-0">{{$row->commactivity_auth->description}}</p>
+            <p class="mb-0">
+                <strong>{{ $row->commactivity_auth->id_number }}</strong><br>
+                {{$row->commactivity_auth->description}}
+            </p>
         </td>
         <td>{{$row->noted}}</td>
-        <td>{{ $row->suco }}</td>
         <td class="text-center">
             <div class="dropdown">
                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">

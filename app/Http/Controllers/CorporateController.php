@@ -67,7 +67,7 @@ class CorporateController extends Controller
             'posto_id'   => 'required|exists:posto,id',
             'suco_id'   => 'required|exists:suco,id',
             'aldeia_id'   => 'required|exists:aldeia,id',
-            'commactivity_auth_id'   => 'required|exists:comm_activity_auth,id',
+            'commactivity_auth_id'   => 'required|exists:commactivity_auth,id',
         ]);
 
         DB::beginTransaction();
@@ -120,7 +120,7 @@ class CorporateController extends Controller
             $action = 'update';
             $title = 'Update master Corporate';
             $breadcrumb = ['Master','Corporate','update'];
-            return view('corporate.form',compact('Corporate','action','title','breadcrumb'));
+            return view('corporate.form',compact('corporate','action','title','breadcrumb'));
          }else{
             return Redirect::back()->withErrors(['error'=> 'Corporate not found.']);
          }
@@ -137,7 +137,7 @@ class CorporateController extends Controller
             'posto_id'   => 'required|exists:posto,id',
             'suco_id'   => 'required|exists:suco,id',
             'aldeia_id'   => 'required|exists:aldeia,id',
-            'commactivity_auth_id'   => 'required|exists:comm_activity_auth,id',
+            'commactivity_auth_id'   => 'required|exists:commactivity_auth,id',
         ]);
         $corporate = Corporate::find($id);
         if($corporate){
