@@ -20,8 +20,11 @@
         <thead>
             <tr>
                 <th width="5%"></th>
-                <th style="width:20%">Aldeia</th>
-                <th style="width:40%">Suco</th>
+                <th style="width:15%">Municipio</th>
+                <th style="width:15%">Posto</th>
+                <th style="width:15%">Suco</th>
+                <th style="width:15%">Aldeia</th>
+                <th style="width:10%">Sort number</th>
                 <th class="text-center" style="width:10%">Action</th>
             </tr>
         </thead>

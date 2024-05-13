@@ -20,8 +20,9 @@
         <thead>
             <tr>
                 <th width="5%"></th>
+                <th style="width:20%">Municipio</th>
                 <th style="width:20%">Posto</th>
-                <th style="width:40%">Municipio</th>
+                <th style="width:20%">Sort number</th>
                 <th class="text-center" style="width:10%">Action</th>
             </tr>
         </thead>

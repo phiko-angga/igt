@@ -21,21 +21,33 @@
 
     <div class="pd-20 card-box mb-30">
         <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Municipio</label>
+            <div class="col-sm-12 col-md-10">
+                <select style="width:100%" class="form-control select2advance" name="municipio_id" id="municipio_id" data-select2-url="{{url('get-select/municipio')}}" >
+                    @isset($posto)
+                    <option value="{{$posto->municipio_id}}">{{$posto->municipio_kode.' | '.$posto->municipio}}</option>
+                    @else
+                    <option value="">-- Choose Municipio --</option>
+                    @endisset
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Code</label>
+            <div class="col-sm-12 col-md-10">
+                <input autofocus required class="form-control" name="kode" type="number" value="{{old('kode',isset($posto) ? $posto->kode : '')}}" placeholder="Code" />
+            </div>
+        </div>
+        <div class="form-group row">
             <label class="col-sm-12 col-md-2 col-form-label">Posto name</label>
             <div class="col-sm-12 col-md-10">
                 <input autofocus class="form-control" name="posto" type="text" value="{{old('posto',isset($posto) ? $posto->posto : '')}}" placeholder="Posto name" />
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-sm-12 col-md-2 col-form-label">Municipio</label>
+            <label class="col-sm-12 col-md-2 col-form-label">Sort number</label>
             <div class="col-sm-12 col-md-10">
-                <select style="width:100%" class="form-control select2advance" name="municipio_id" id="municipio_id" data-select2-url="{{url('get-select/municipio')}}" >
-                    @isset($posto)
-                    <option value="{{$posto->municipio_id}}">{{$posto->municipio}}</option>
-                    @else
-                    <option value="">-- Choose Municipio --</option>
-                    @endisset
-                </select>
+                <input class="form-control" name="urut" type="number" value="{{old('urut',isset($posto) ? $posto->urut : '')}}" placeholder="Sort number" />
             </div>
         </div>
     </div>

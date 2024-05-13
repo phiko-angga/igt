@@ -12,10 +12,16 @@ class Aldeia extends Model
     protected $fillable = [
         'aldeia',
         'suco_id',
+        'urut',
+        'kode',
     ];
 
+    public function suco(){
+        return $this->belongsTo(Suco::class,'suco_id','id');
+    }
+    
     public function get_data($request){
-        $data = Self::select('aldeia.*','suco.suco')
+        $data = Self::with('suco')->select('aldeia.*','suco.suco as suco_name')
         ->join('suco','suco.id','=','aldeia.suco_id');
         $search = $request->get('search');
         if(isset($search)){
@@ -28,8 +34,7 @@ class Aldeia extends Model
     }
 
     public function get_detail($id){
-        $data = Self::select('aldeia.*','suco.suco')
-        ->join('suco','suco.id','=','aldeia.suco_id')
+        $data = Self::with('suco')->select('aldeia.*')
         ->where('aldeia.id',$id)->first();
         
         return $data; 

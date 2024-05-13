@@ -11,11 +11,16 @@ class Posto extends Model
     protected $table = 'posto';
     protected $fillable = [
         'posto',
-        'municipio_id',
+        'municipio_id','urut',
+        'kode',
     ];
 
+    public function municipio(){
+        return $this->belongsTo(Municipio::class,'municipio_id','id');
+    }
+
     public function get_data($request){
-        $data = Self::select('posto.*','municipio.municipio')
+        $data = Self::with('municipio')->select('posto.*','municipio.municipio as municipio_name')
         ->join('municipio','municipio.id','=','posto.municipio_id');
         $search = $request->get('search');
         if(isset($search)){
@@ -28,7 +33,7 @@ class Posto extends Model
     }
 
     public function get_detail($id){
-        $data = Self::select('posto.*','municipio.municipio')
+        $data = Self::select('posto.*','municipio.municipio','municipio.kode as municipio_kode')
         ->join('municipio','municipio.id','=','posto.municipio_id');
         $data = $data->where('posto.id',$id)->first();
         

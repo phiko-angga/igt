@@ -352,4 +352,5 @@ $(document).on('change','#municipio_id, #posto_id, #suco_id',function(e){
       $("#aldeia_id").data("select2-url",baseUrl+'/get-select/aldeia?suco_id='+$("#suco_id").val());
   }
   initSelect2();
+  console.log('ok');
 })

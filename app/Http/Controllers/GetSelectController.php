@@ -49,7 +49,7 @@ class GetSelectController extends Controller
             foreach($municipio as $p){
                 $data['items'][] = [
                     'id' => $p->id,
-                    'text' => $p->municipio
+                    'text' => $p->kode.' | '.$p->municipio
                 ];
             }
             $data['total_count'] = $municipio->count();
@@ -83,7 +83,7 @@ class GetSelectController extends Controller
             foreach($posto as $p){
                 $data['items'][] = [
                     'id' => $p->id,
-                    'text' => $p->posto
+                    'text' => $p->kode.' | '.$p->posto
                 ];
             }
             $data['total_count'] = $posto->count();
@@ -117,7 +117,7 @@ class GetSelectController extends Controller
             foreach($suco as $p){
                 $data['items'][] = [
                     'id' => $p->id,
-                    'text' => $p->suco
+                    'text' => $p->kode.' | '.$p->suco
                 ];
             }
             $data['total_count'] = $suco->count();
@@ -152,7 +152,7 @@ class GetSelectController extends Controller
             foreach($aldeia as $p){
                 $data['items'][] = [
                     'id' => $p->id,
-                    'text' => $p->aldeia
+                    'text' => $p->kode.' | '.$p->aldeia
                 ];
             }
             $data['total_count'] = $aldeia->count();

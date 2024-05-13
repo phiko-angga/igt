@@ -62,11 +62,12 @@ class SucoController extends Controller
         request()->validate([
             'suco'   => 'required',
             'posto_id'   => 'required|exists:posto,id',
+            'kode'   => 'required|numeric|regex:/^\d[0-9]{5}$/|unique:suco,kode',
         ]);
 
         DB::beginTransaction();
         try {
-            $data = $request->only(['suco','posto_id']);
+            $data = $request->only(['suco','posto_id','kode','urut']);
             
             $suco = Suco::create($data);
             DB::commit();
@@ -128,13 +129,14 @@ class SucoController extends Controller
         request()->validate([
             'suco'   => 'required',
             'posto_id'   => 'required|exists:posto,id',
+            'kode'   => 'required|numeric|regex:/^\d[0-9]{5}$/|unique:suco,kode,'.$id,
         ]);
         $suco = Suco::find($id);
         if($suco){
 
             DB::beginTransaction();
             try {
-                $data = $request->only(['suco','posto_id']);
+                $data = $request->only(['suco','posto_id','kode','urut']);
 
                 Suco::where('id',$suco->id)->update($data);
                 DB::commit();

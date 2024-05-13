@@ -61,11 +61,12 @@ class MunicipioController extends Controller
     {
         request()->validate([
             'municipio'   => 'required',
+            'kode'   => 'required|numeric|regex:/^\d[0-9]{1}$/|unique:municipio,kode',
         ]);
 
         DB::beginTransaction();
         try {
-            $data = $request->only(['municipio']);
+            $data = $request->only(['municipio','kode','urut']);
             
             $municipio = Municipio::create($data);
             DB::commit();
@@ -124,13 +125,14 @@ class MunicipioController extends Controller
         
         request()->validate([
             'municipio'   => 'required',
+            'kode'   => 'required|numeric|regex:/^\d[0-9]{1}$/|unique:municipio,kode,'.$id,
         ]);
         $municipio = Municipio::find($id);
         if($municipio){
 
             DB::beginTransaction();
             try {
-                $data = $request->only(['municipio']);
+                $data = $request->only(['municipio','kode','urut']);
 
                 Municipio::where('id',$municipio->id)->update($data);
                 DB::commit();

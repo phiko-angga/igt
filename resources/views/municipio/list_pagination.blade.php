@@ -3,7 +3,9 @@
     @foreach($municipio as $key => $row)
     <tr>
         <td>{{ $municipio->firstItem() + $key}}</td>
+        <td>{{ $row->kode }}</td>
         <td><strong>{{ $row->municipio }}</strong></td>
+        <td>{{ $row->urut }}</td>
         <td class="text-center">
             <div class="dropdown">
                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">

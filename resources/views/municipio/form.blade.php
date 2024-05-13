@@ -18,9 +18,21 @@
 
     <div class="pd-20 card-box mb-30">
         <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Code</label>
+            <div class="col-sm-12 col-md-10">
+                <input autofocus required class="form-control" name="kode" type="number" value="{{old('kode',isset($municipio) ? $municipio->kode : '')}}" placeholder="Code" />
+            </div>
+        </div>
+        <div class="form-group row">
             <label class="col-sm-12 col-md-2 col-form-label">Municipio name</label>
             <div class="col-sm-12 col-md-10">
-                <input autofocus class="form-control" name="municipio" type="text" value="{{old('municipio',isset($municipio) ? $municipio->municipio : '')}}" placeholder="Municipio name" />
+                <input required class="form-control" name="municipio" type="text" value="{{old('municipio',isset($municipio) ? $municipio->municipio : '')}}" placeholder="Municipio name" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Sort number</label>
+            <div class="col-sm-12 col-md-10">
+                <input class="form-control" name="urut" type="number" value="{{old('urut',isset($municipio) ? $municipio->urut : '')}}" placeholder="Sort number" />
             </div>
         </div>
     </div>

@@ -3,8 +3,11 @@
     @foreach($aldeia as $key => $row)
     <tr>
         <td>{{ $aldeia->firstItem() + $key}}</td>
-        <td><strong>{{ $row->aldeia }}</strong></td>
-        <td>{{ $row->suco }}</td>
+        <td>{{ $row->suco->posto->municipio->kode}}<br>{{$row->suco->posto->municipio->municipio }}</td>
+        <td>{{ $row->suco->posto->kode}}<br>{{$row->suco->posto->posto }}</td>
+        <td>{{ $row->suco->kode}}<br>{{$row->suco->suco }}</td>
+        <td><strong>{{ $row->kode}}<br>{{$row->aldeia }}</strong></td>
+        <td>{{ $row->urut }}</td>
         <td class="text-center">
             <div class="dropdown">
                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">

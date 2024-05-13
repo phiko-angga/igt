@@ -10,11 +10,12 @@ class Municipio extends Model
     use HasFactory;
     protected $table = 'municipio';
     protected $fillable = [
-        'municipio',
+        'municipio','urut','id',
+        'kode',
     ];
 
     public function get_data($request){
-        $data = Self::select('id','municipio');
+        $data = Self::select('*');
         $search = $request->get('search');
         if(isset($search)){
             $data = $data->where('municipio', 'like', '%'.$search.'%');
