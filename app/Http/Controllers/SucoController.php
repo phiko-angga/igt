@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use App\Helpers\ImageHelper;
 use Carbon\Carbon;
 use Redirect;
@@ -59,10 +60,16 @@ class SucoController extends Controller
 
     public function store(Request $request)
     {
+        $posto_id = $request->posto_id;
         request()->validate([
             'suco'   => 'required',
             'posto_id'   => 'required|exists:posto,id',
-            'kode'   => 'required|numeric|regex:/^\d[0-9]{1}$/',
+            'kode'   => [
+                            'required','numeric','regex:/^\d[0-9]{1}$/',
+                            Rule::unique('suco')->where(function ($query) use($posto_id){
+                                return $query->where('posto_id', $posto_id);
+                            })
+                        ],
         ]);
 
         DB::beginTransaction();
@@ -126,10 +133,17 @@ class SucoController extends Controller
     public function update(Request $request, $id)
     {
         
+        $posto_id = $request->posto_id;
         request()->validate([
             'suco'   => 'required',
             'posto_id'   => 'required|exists:posto,id',
             'kode'   => 'required|numeric|regex:/^\d[0-9]{1}$/',
+            'kode'   => [
+                            'required','numeric','regex:/^\d[0-9]{1}$/',
+                            Rule::unique('suco')->ignore($id)->where(function ($query) use($posto_id){
+                                return $query->where('posto_id', $posto_id);
+                            })
+                        ],
         ]);
         $suco = Suco::find($id);
         if($suco){

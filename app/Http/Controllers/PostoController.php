@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use App\Helpers\ImageHelper;
 use Carbon\Carbon;
 use Redirect;
@@ -59,10 +60,16 @@ class PostoController extends Controller
 
     public function store(Request $request)
     {
+        $municipio_id = $request->municipio_id;
         request()->validate([
             'posto'   => 'required',
             'municipio_id'   => 'required|exists:municipio,id',
-            'kode'   => 'required|numeric|regex:/^\d[0-9]{1}$/',
+            'kode'   => [
+                            'required','numeric','regex:/^\d[0-9]{1}$/',
+                            Rule::unique('posto')->where(function ($query) use($municipio_id){
+                                return $query->where('municipio_id', $municipio_id);
+                            })
+                        ],
         ]);
 
         DB::beginTransaction();
@@ -125,10 +132,16 @@ class PostoController extends Controller
     public function update(Request $request, $id)
     {
         
+        $municipio_id = $request->municipio_id;
         request()->validate([
             'posto'   => 'required',
             'municipio_id'   => 'required|exists:municipio,id',
-            'kode'   => 'required|numeric|regex:/^\d[0-9]{1}$/',
+            'kode'   => [
+                            'required','numeric','regex:/^\d[0-9]{1}$/',
+                            Rule::unique('posto')->ignore($id)->where(function ($query) use($municipio_id){
+                                return $query->where('municipio_id', $municipio_id);
+                            })
+                        ],
         ]);
         $posto = Posto::find($id);
         if($posto){
