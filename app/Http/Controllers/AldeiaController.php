@@ -62,7 +62,7 @@ class AldeiaController extends Controller
         request()->validate([
             'aldeia'   => 'required',
             'suco_id'   => 'required|exists:suco,id',
-            'kode'   => 'required|numeric|regex:/^\d[0-9]{7}$/|unique:aldeia,kode',
+            'kode'   => 'required|numeric|regex:/^\d[0-9]{1}$/',
         ]);
 
         DB::beginTransaction();
@@ -129,7 +129,7 @@ class AldeiaController extends Controller
         request()->validate([
             'aldeia'   => 'required',
             'suco_id'   => 'required|exists:suco,id',
-            'kode'   => 'required|numeric|regex:/^\d[0-9]{7}$/|unique:aldeia,kode,'.$id,
+            'kode'   => 'required|numeric|regex:/^\d[0-9]{1}$/',
         ]);
         $aldeia = Aldeia::find($id);
         if($aldeia){

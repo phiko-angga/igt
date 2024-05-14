@@ -4,8 +4,8 @@
     <tr>
         <td>{{ $suco->firstItem() + $key}}</td>
         <td>{{ $row->posto->municipio->kode}}<br>{{$row->posto->municipio->municipio }}</td>
-        <td>{{ $row->posto->kode}}<br>{{$row->posto->posto }}</td>
-        <td><strong>{{ $row->kode}}<br>{{$row->suco }}</strong></td>
+        <td>{{ $row->posto->municipio->kode.$row->posto->kode}}<br>{{$row->posto->posto }}</td>
+        <td><strong>{{ $row->posto->municipio->kode.$row->posto->kode.$row->kode}}<br>{{$row->suco }}</strong></td>
         <td>{{ $row->urut }}</td>
         <td class="text-center">
             <div class="dropdown">

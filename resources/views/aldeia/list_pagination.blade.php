@@ -4,9 +4,9 @@
     <tr>
         <td>{{ $aldeia->firstItem() + $key}}</td>
         <td>{{ $row->suco->posto->municipio->kode}}<br>{{$row->suco->posto->municipio->municipio }}</td>
-        <td>{{ $row->suco->posto->kode}}<br>{{$row->suco->posto->posto }}</td>
-        <td>{{ $row->suco->kode}}<br>{{$row->suco->suco }}</td>
-        <td><strong>{{ $row->kode}}<br>{{$row->aldeia }}</strong></td>
+        <td>{{ $row->suco->posto->municipio->kode.$row->suco->posto->kode}}<br>{{$row->suco->posto->posto }}</td>
+        <td>{{ $row->suco->posto->municipio->kode.$row->suco->posto->kode.$row->suco->kode}}<br>{{$row->suco->suco }}</td>
+        <td><strong>{{ $row->suco->posto->municipio->kode.$row->suco->posto->kode.$row->suco->kode.$row->kode}}<br>{{$row->aldeia }}</strong></td>
         <td>{{ $row->urut }}</td>
         <td class="text-center">
             <div class="dropdown">
