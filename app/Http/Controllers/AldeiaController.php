@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use App\Helpers\ImageHelper;
 use Carbon\Carbon;
 use Redirect;
@@ -59,10 +60,16 @@ class AldeiaController extends Controller
 
     public function store(Request $request)
     {
+        $suco_id = $request->suco_id;
         request()->validate([
-            'aldeia'   => 'required',
-            'suco_id'   => 'required|exists:suco,id',
-            'kode'   => 'required|numeric|regex:/^\d[0-9]{1}$/',
+            'aldeia' => 'required',
+            'suco_id'=> 'required|exists:suco,id',
+            'kode'   => [
+                            'required','numeric','regex:/^\d[0-9]{1}$/',
+                            Rule::unique('aldeia')->where(function ($query) use($suco_id){
+                                return $query->where('suco_id', $suco_id);
+                            })
+                        ],
         ]);
 
         DB::beginTransaction();
@@ -126,10 +133,16 @@ class AldeiaController extends Controller
     public function update(Request $request, $id)
     {
         
+        $suco_id = $request->suco_id;
         request()->validate([
             'aldeia'   => 'required',
             'suco_id'   => 'required|exists:suco,id',
-            'kode'   => 'required|numeric|regex:/^\d[0-9]{1}$/',
+            'kode'   => [
+                            'required','numeric','regex:/^\d[0-9]{1}$/',
+                            Rule::unique('aldeia')->ignore($id)->where(function ($query) use($suco_id){
+                                return $query->where('suco_id', $suco_id);
+                            })
+                        ],
         ]);
         $aldeia = Aldeia::find($id);
         if($aldeia){
