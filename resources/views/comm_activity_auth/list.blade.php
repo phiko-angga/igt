@@ -21,7 +21,8 @@
             <tr>
                 <th width="5%"></th>
                 <th style="width:20%">ID number</th>
-                <th style="width:40%">Description</th>
+                <th style="width:30%">Description</th>
+                <th style="width:30%">Description 2</th>
                 <th class="text-center" style="width:10%">Action</th>
             </tr>
         </thead>

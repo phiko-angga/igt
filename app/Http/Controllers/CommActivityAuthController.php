@@ -66,7 +66,7 @@ class CommActivityAuthController extends Controller
 
         DB::beginTransaction();
         try {
-            $data = $request->only(['id_number','description']);
+            $data = $request->only(['id_number','description','description2']);
             
             $commActivityAuth = CommActivityAuth::create($data);
             DB::commit();
@@ -132,7 +132,7 @@ class CommActivityAuthController extends Controller
 
             DB::beginTransaction();
             try {
-                $data = $request->only(['id_number','desription']);
+                $data = $request->only(['id_number','desription','description2']);
                 CommActivityAuth::where('id',$commActivityAuth->id)->update($data);
                 DB::commit();
 

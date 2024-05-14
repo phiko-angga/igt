@@ -10,7 +10,7 @@ class CommActivityAuth extends Model
     use HasFactory;
     protected $table = 'commactivity_auth';
     protected $fillable = [
-        'id_number','description'
+        'id_number','description','description2'
     ];
 
     public function get_data($request){

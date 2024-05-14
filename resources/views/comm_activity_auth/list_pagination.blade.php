@@ -5,6 +5,7 @@
         <td>{{ $commActivityAuth->firstItem() + $key}}</td>
         <td><strong>{{ $row->id_number }}</strong></td>
         <td>{{ $row->description }}</td>
+        <td>{{ $row->description2 }}</td>
         <td class="text-center">
             <div class="dropdown">
                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">

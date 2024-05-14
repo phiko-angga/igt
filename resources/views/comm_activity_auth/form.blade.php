@@ -26,7 +26,13 @@
         <div class="form-group row">
             <label class="col-sm-12 col-md-2 col-form-label">Description</label>
             <div class="col-sm-12 col-md-10">
-                <textarea required name="description" class="form-control" placeholder="Description">{{old('description',isset($commActivityAuth) ? $commActivityAuth->description : '')}}</textarea>
+                <textarea row="3" required name="description" class="form-control" placeholder="Description">{{old('description',isset($commActivityAuth) ? $commActivityAuth->description : '')}}</textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Description 2</label>
+            <div class="col-sm-12 col-md-10">
+                <textarea row="3" required name="description2" class="form-control" placeholder="Description 2">{{old('description2',isset($commActivityAuth) ? $commActivityAuth->description2 : '')}}</textarea>
             </div>
         </div>
     </div>
