@@ -62,7 +62,7 @@ class PostoController extends Controller
         request()->validate([
             'posto'   => 'required',
             'municipio_id'   => 'required|exists:municipio,id',
-            'kode'   => 'required|numeric|regex:/^\d[0-9]{3}$/|unique:posto,kode',
+            'kode'   => 'required|numeric|regex:/^\d[0-9]{1}$/',
         ]);
 
         DB::beginTransaction();
@@ -128,7 +128,7 @@ class PostoController extends Controller
         request()->validate([
             'posto'   => 'required',
             'municipio_id'   => 'required|exists:municipio,id',
-            'kode'   => 'required|numeric|regex:/^\d[0-9]{3}$/|unique:posto,kode,'.$id,
+            'kode'   => 'required|numeric|regex:/^\d[0-9]{1}$/',
         ]);
         $posto = Posto::find($id);
         if($posto){

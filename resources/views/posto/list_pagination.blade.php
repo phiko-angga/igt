@@ -4,7 +4,7 @@
     <tr>
         <td>{{ $posto->firstItem() + $key}}</td>
         <td>{{ $row->municipio->kode }}<br>{{$row->municipio->municipio}}</td>
-        <td><strong>{{ $row->kode}}<br>{{$row->posto }}</strong></td>
+        <td><strong>{{ $row->municipio->kode.$row->kode}}<br>{{$row->posto }}</strong></td>
         <td>{{ $row->urut }}</td>
         <td class="text-center">
             <div class="dropdown">
