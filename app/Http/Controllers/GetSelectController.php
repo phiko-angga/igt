@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Corporate;
+use App\Models\Position;
 use App\Models\CommActivityAuth;
 use App\Models\Municipio;
 use App\Models\Posto;
@@ -182,6 +184,65 @@ class GetSelectController extends Controller
                     'id' => $p->id,
                     'text' => $p->id_number,
                     'data'  => $p
+                ];
+            }
+            $data['total_count'] = $get->count();
+        }
+        return response()->json($data, 200);
+    }
+
+    public function getCorporate(Request $request){
+        $search     = $request->q;
+        $limit      = $request->page_limit;
+        $page       = $request->page;
+
+        $get = Corporate::with('commactivity_auth')->select('*');
+
+        if($search != null){
+            $get = $get->where(function($query) use ($search){
+                $query->where('number','like','%'.$search.'%')
+                ->orWhere('company','like','%'.$search.'%');
+            });
+        }
+
+        $get = $get->skip($page)->take($limit)->get();
+        $data = ["total_count"   => 0];
+
+        if($get){
+            foreach($get as $p){
+                $data['items'][] = [
+                    'id' => $p->id,
+                    'text' => $p->number.' | '.$p->company,
+                    'data'  => $p
+                ];
+            }
+            $data['total_count'] = $get->count();
+        }
+        return response()->json($data, 200);
+    }
+    
+
+    public function getPosition(Request $request){
+        $search     = $request->q;
+        $limit      = $request->page_limit;
+        $page       = $request->page;
+
+        $get = Position::select('*');
+
+        if($search != null){
+            $get = $get->where(function($query) use ($search){
+                $query->where('name','like','%'.$search.'%');
+            });
+        }
+
+        $get = $get->skip($page)->take($limit)->get();
+        $data = ["total_count"   => 0];
+
+        if($get){
+            foreach($get as $p){
+                $data['items'][] = [
+                    'id' => $p->id,
+                    'text' => $p->name,
                 ];
             }
             $data['total_count'] = $get->count();

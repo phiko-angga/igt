@@ -12,6 +12,7 @@ use App\Http\Controllers\SucoController;
 use App\Http\Controllers\AldeiaController;
 use App\Http\Controllers\CommActivityAuthController;
 use App\Http\Controllers\CorporateController;
+use App\Http\Controllers\WorkerController;
 use App\Http\Controllers\GetSelectController;
 
 /*
@@ -43,7 +44,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('master/comm-activity-auth', CommActivityAuthController::class)->name('*','comm-activity-auth');
     Route::resource('master/corporate', CorporateController::class)->name('*','corporate');
 
-    Route::resource('transaction/local-foreign-worker', UserController::class)->name('*','local-foreign-worker');
+    Route::resource('transaction/worker', WorkerController::class)->name('*','worker');
     Route::resource('transaction/supervision', UserController::class)->name('*','supervision');
 
     Route::get('/get-select/municipio', [GetSelectController::class,'getMunicipio']);
@@ -51,6 +52,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/get-select/suco', [GetSelectController::class,'getSuco']);
     Route::get('/get-select/aldeia', [GetSelectController::class,'getAldeia']);
     Route::get('/get-select/comm-activity-auth', [GetSelectController::class,'getCommActAuth']);
+    Route::get('/get-select/corporate', [GetSelectController::class,'getCorporate']);
+    Route::get('/get-select/position', [GetSelectController::class,'getPosition']);
 
     Route::get('/logout', [AuthController::class,'logout']);
 });

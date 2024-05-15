@@ -53,7 +53,7 @@
 								><span class="mtext">Transaction</span>
 							</a>
 							<ul class="submenu">
-								<li><a href="{{url('transaction/local-foreign-worker')}}">Local / Foreign Worker</a></li>
+								<li><a href="{{url('transaction/worker')}}">Local / Foreign Worker</a></li>
 								<li><a href="{{url('transaction/supervision')}}">Supervision</a></li>
 							</ul>
 						</li>
