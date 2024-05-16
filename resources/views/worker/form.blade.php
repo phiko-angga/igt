@@ -4,11 +4,6 @@
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endsection
 
-@section('page_header_right')
-    <a href="{{url('transaction/worker')}}" class="btn btn-secondary btn-fw mr-2">Cancel</a>
-    <button form="form" type="submit" class="btn btn-primary btn-fw">Submit</button>
-@endsection
-
 @section('content')
 <form id="form" method="post" enctype="multipart/form-data" action="{{$action == 'store' ? url('transaction/worker') : url('transaction/worker/'.$worker->id)}}">
     
@@ -74,13 +69,9 @@
             </div>
             <div class="form-group row">
                 <label class="col-sm-12 col-md-2 col-form-label">Code & Name worker</label>
-                <div class="col-md-10 col-md-10">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="code">{{isset($worker) ? $worker->code : 'Code generate automatically'}}</span>
-                        </div>
-                        <input required type="text" class="form-control" name="name" value="{{isset($worker) ? $worker->name : ''}}" aria-describedby="name" placeholder="Name">
-                    </div>
+                <div class="col-md-10 col-md-10 d-flex">
+                    <input required type="text" class="form-control mr-3" name="name" value="{{isset($worker) ? $worker->name : ''}}" aria-describedby="name" placeholder="Name">
+                    <input readonly type="text" class="form-control" value="{{isset($worker) ? $worker->code : ''}}" aria-describedby="code" placeholder="Code generate automatically">
                 </div>
             </div>
             <div class="form-group row">
@@ -251,6 +242,12 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <hr>
+        <div class="pd-20 text-center">
+            <a href="{{url('transaction/worker')}}" class="btn btn-secondary btn-fw mr-2">Cancel</a>
+            <button form="form" type="submit" class="btn btn-primary btn-fw">Submit</button>
         </div>
     </div>
 </form>
