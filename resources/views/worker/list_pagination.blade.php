@@ -21,12 +21,12 @@
             </p>
         </td>
         <td>
-            {{$row->pob}}, {{\Carbon\Carbon::parse($row->dob)->format('d M Y')}}
+            {{$row->pob}},<br> {{\Carbon\Carbon::parse($row->dob)->format('d M Y')}}
         </td>
         <td>
             <p class="mb-0">
                 <strong>{{ \Carbon\Carbon::parse($row->work_startdate)->format('d M Y') }}</strong><br>
-                {{$row->work_period}}
+                {{intval(date('Y')) - intval(date('Y',strtotime($row->work_startdate)))}} years
             </p>
         </td>
         <td>

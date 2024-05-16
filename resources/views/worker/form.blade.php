@@ -102,8 +102,8 @@
             <div class="form-group row">
                 <label class="col-sm-12 col-md-2 col-form-label">Start & Period of Work</label>
                 <div class="col-md-10 col-md-10 d-flex">
-                    <input required type="date" class="form-control mr-3" name="work_startdate" value="{{isset($worker) ? $worker->work_startdate : ''}}" placeholder="Start working">
-                    <input required type="text" class="form-control" name="work_period" value="{{isset($worker) ? $worker->work_period : ''}}" placeholder="Work period">
+                    <input required type="date" class="form-control mr-3" id="work_startdate" name="work_startdate" value="{{isset($worker) ? $worker->work_startdate : ''}}" placeholder="Start working">
+                    <input readonly type="text" class="form-control" id="work_period" name="work_period" value="{{isset($worker) ? date('Y',strtotime($worker->work_startdate)) - date('Y').' years' : ''}}" placeholder="Work period">
                 </div>
             </div>
         </div>
@@ -268,5 +268,12 @@
         $("#corporate_comm_actauth").val(evt.params.data.data.commactivity_auth.description);
         $("#corporate_comm_actauth2").val(evt.params.data.data.commactivity_auth.description2);
     });
+
+    $(document).on("change","#work_startdate",function(){
+        let startdate = parseInt($(this).val().substring(0,4));
+		let CurrentDate = parseInt(new Date().getFullYear());
+        console.log(CurrentDate - startdate);
+        $("#work_period").val((CurrentDate - startdate)+" years");
+    })
 </script>
 @endsection
